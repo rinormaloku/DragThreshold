@@ -62,7 +62,15 @@ namespace DragThreshold
             }
             else
             {
-                // Pen lifted - reset state
+                // Pen lifted
+                // If we never started dragging, report the pen-up at the anchor position
+                // This ensures mousedown and mouseup happen at the same location for apps like Electron
+                if (_anchorPosition != null && !_isDragging)
+                {
+                    tabletReport.Position = _anchorPosition.Value;
+                }
+
+                // Reset state
                 _anchorPosition = null;
                 _isDragging = false;
             }

@@ -1,0 +1,54 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'  # Triggers on version tags like v1.0.0
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        submodules: recursive
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '6.0.x'
+
+    - name: Build plugin
+      run: dotnet build -c Release
+
+    - name: Create release package
+      run: |
+        mkdir -p release/DragThreshold
+        cp DragThreshold/bin/Release/net6.0/DragThreshold.dll release/DragThreshold/
+        cp DragThreshold/bin/Release/net6.0/DragThreshold.deps.json release/DragThreshold/
+        cd release
+        zip -r DragThreshold.zip DragThreshold/
+
+    - name: Create GitHub Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: release/DragThreshold.zip
+        body: |
+          ## Installation
+
+          1. Download `DragThreshold.zip`
+          2. Extract the `DragThreshold` folder
+          3. Copy the folder to your OpenTabletDriver plugins directory:
+             - Linux: `~/.config/OpenTabletDriver/Plugins/`
+             - Windows: `%localappdata%\OpenTabletDriver\Plugins\`
+          4. Restart OpenTabletDriver
+          5. Enable the filter in the Filters tab
+
+          ## Changes
+          See commit history for details.
+        draft: false
+        prerelease: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -45,13 +45,6 @@ namespace DragThreshold
                     {
                         // Threshold exceeded - start dragging
                         _isDragging = true;
-
-                        if (Smooth_transition)
-                        {
-                            // Offset the position so there's no jump
-                            Vector2 direction = Vector2.Normalize(tabletReport.Position - _anchorPosition.Value);
-                            tabletReport.Position = _anchorPosition.Value + direction * (distance - Threshold);
-                        }
                     }
                     else
                     {
@@ -83,10 +76,5 @@ namespace DragThreshold
             "Threshold: The distance in pixels the pen must move before it is considered a drag. " +
             "Movement below this threshold will keep the cursor stationary, helping prevent accidental drags during clicks.")]
         public float Threshold { get; set; }
-
-        [BooleanProperty("Smooth Transition", ""), ToolTip
-            ("Drag Threshold:\n\n" +
-            "Smooth Transition: When enabled, the cursor will start moving from the anchor point rather than jumping to the pen's actual position when the threshold is exceeded.")]
-        public bool Smooth_transition { get; set; }
     }
 }

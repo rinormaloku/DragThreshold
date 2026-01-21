@@ -8,8 +8,6 @@ Prevents accidental cursor movement during pen clicks by defining a movement thr
 
 - **Default Action:** When the pen tip goes down, the cursor position is locked at the initial contact point. The cursor will not move until the pen moves beyond the set **Threshold** distance.
 
-- **Smooth Transition:** When enabled, the cursor will start moving from the anchor point rather than jumping to the pen's actual position when the threshold is exceeded. This prevents a visual "jump" when the drag begins.
-
 ## Use Case:
 
 This plugin is particularly useful for Linux users on Wayland (GNOME/KDE) where compositors often lack a configurable deadzone for tablet input, leading to "jittery" clicks that register as tiny drags. The Drag Threshold plugin provides precise control over when movement should be considered an intentional drag versus a click.
@@ -76,7 +74,6 @@ This plugin is particularly useful for Linux users on Wayland (GNOME/KDE) where 
    - Click **Add Filter**
    - Select **Drag Threshold** from the list
    - Configure the **Threshold** value (default: 5px)
-   - Optionally enable **Smooth Transition**
    - Click **Apply** to save settings
 
 6. **Test the plugin:**
@@ -95,7 +92,7 @@ This plugin is particularly useful for Linux users on Wayland (GNOME/KDE) where 
 
 2. **Restart OpenTabletDriver:**
    ```bash
-   systemctl --user restart opentabletdriver
+   systemctl --user restart opentabletdriver.service --now
    ```
 
 3. **Follow steps 5-6 from Method 1 above**
@@ -108,7 +105,6 @@ This plugin is particularly useful for Linux users on Wayland (GNOME/KDE) where 
 ### Adjusting Settings:
 
 - **Threshold (px):** Start with 5px and adjust based on your preference. Lower values (2-3px) provide more sensitivity, while higher values (7-10px) require more intentional movement to drag.
-- **Smooth Transition:** Enable this to prevent cursor "jumping" when you exceed the threshold.
 
 ## Contributing:
 

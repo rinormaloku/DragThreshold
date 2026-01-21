@@ -38,8 +38,8 @@ jobs:
     - name: Create release package
       run: |
         mkdir -p release/DragThreshold
-        cp DragThreshold/bin/Release/net10.0/DragThreshold.dll release/DragThreshold/
-        cp DragThreshold/bin/Release/net10.0/DragThreshold.deps.json release/DragThreshold/
+        cp DragThreshold/bin/Release/net8.0/DragThreshold.dll release/DragThreshold/
+        cp DragThreshold/bin/Release/net8.0/DragThreshold.deps.json release/DragThreshold/
         cd release
         zip -r DragThreshold.zip DragThreshold/
 

@@ -328,3 +328,7 @@ $RECYCLE.BIN/
 *.tmp
 *.temp
 *.log
+
+# Generated release files
+DragThreshold.zip
+metadata.json

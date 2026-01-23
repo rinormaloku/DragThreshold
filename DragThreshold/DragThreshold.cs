@@ -72,7 +72,7 @@ namespace DragThreshold
         public PipelinePosition Position => PipelinePosition.PostTransform;
 
         [Property("Threshold"), Unit("px"), DefaultPropertyValue(5f), ToolTip
-            ("Drag Threshold:\n\n" +
+            ("DragThreshold:\n\n" +
             "Threshold: The distance in pixels the pen must move before it is considered a drag. " +
             "Movement below this threshold will keep the cursor stationary, helping prevent accidental drags during clicks.")]
         public float Threshold { get; set; }

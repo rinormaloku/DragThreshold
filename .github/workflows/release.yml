@@ -37,16 +37,15 @@ jobs:
 
     - name: Create release package
       run: |
-        mkdir -p release/DragThreshold
-        cp DragThreshold/bin/Release/net8.0/DragThreshold.dll release/DragThreshold/
-        cp DragThreshold/bin/Release/net8.0/DragThreshold.deps.json release/DragThreshold/
-        cd release
+        mkdir -p DragThreshold
+        cp DragThreshold/bin/Release/net8.0/DragThreshold.dll DragThreshold/
+        cp DragThreshold/bin/Release/net8.0/DragThreshold.deps.json DragThreshold/
         zip -r DragThreshold.zip DragThreshold/
 
     - name: Create GitHub Release
       uses: softprops/action-gh-release@v1
       with:
-        files: release/DragThreshold.zip
+        files: DragThreshold.zip
         body: |
           ## Installation
 
